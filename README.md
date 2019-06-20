@@ -1,7 +1,4 @@
-# Project Proposal
-
-# Topic
-The Right to Health Care for All
+# Project Proposal - The Right to Health Care for All
 
 # Inspiration
   Health care is a fundamental human right. However, government policies do not reflect that. People in the United States are not guaranteed basic human needs such as clean water, food, housing, sanitation, due to our current health care system. Other countries around the world provide univeral health care for their population. How does the health care system in other countries compare to the health care system in the United States? 
@@ -13,9 +10,14 @@ The Right to Health Care for All
   (http://apps.who.int/medicinedocs/en/d/Js21558en/)
 - Health Insurance Coverage by Type of Plan (1987-2014)
   (http://apps.who.int/medicinedocs/en/d/Js21558en/)
+- Mortality rate, infant (per 1,000 live births)
+  (https://data.worldbank.org/indicator/SP.DYN.IMRT.IN)
+- Health Indicators 
+  (https://data.worldbank.org/indicator)
 
 # Indicators
 - Infant mortality rate (0-1 year) (WHO)
+- Health Care Coverage (Worldwide) (WHO)
 - Health expenditure (WHO)
 - Basic sanitation services (WHO)
 
