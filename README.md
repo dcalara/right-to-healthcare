@@ -14,12 +14,33 @@
   (https://data.worldbank.org/indicator/SP.DYN.IMRT.IN)
 - Health Indicators 
   (https://data.worldbank.org/indicator)
+- InfantMortalityRate_Contries 
+  (https://data.worldbank.org/indicator/SP.DYN.IMRT.IN)
+	Deleted null data and regions just leaving year by year data for individual countries
+- Corruption Data Source 
+  (https://datahub.io/core/corruption-perceptions-index)
+	Raw data, not modified
+- Death rate, crude (per 1,000 people) 
+  (https://data.worldbank.org/indicator/SP.DYN.CDRT.IN?view=chart)
+- Life expectancy at birth, total (years) 
+  (https://data.worldbank.org/indicator/SP.DYN.LE00.IN?view=chart)
+- Life expectancy at birth, male (years) 
+  (https://data.worldbank.org/indicator/SP.DYN.LE00.MA.IN)
+- Current health expenditure (% of GDP)
+  (https://data.worldbank.org/indicator/SH.XPD.CHEX.GD.ZS)
+- Current health expenditure per capita (current US$)- 
+  (https://data.worldbank.org/indicator/SH.XPD.CHEX.PC.CD)
+
 
 # Indicators
-- Infant mortality rate (0-1 year) (WHO)
-- Health Care Coverage (Worldwide) (WHO)
-- Health expenditure (WHO)
-- Basic sanitation services (WHO)
+- Infant mortality rate (0-1 year) 
+- Health Care Coverage (Worldwide) 
+- Health expenditure 
+- Basic sanitation services 
+- Life Expectancy
+- Corruption Index
+- Death Rate
+
 
 # Visuals
  - Timelapse graphs
