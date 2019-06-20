@@ -1,0 +1,40 @@
+App Design Document:
+
+
+Client Side:
+
+ -- "Landing page" contains static visualizations (Plotly?) and links to data
+ explorer tools.  The page showcases the most interesting findings (about 4)
+ designed to draw the user in and get them to explore the tools.  Also keeps
+ the server interaction limited only to people who click through, and keeps
+ some content visible even if server routes are having issues.
+
+ -- "Data compare page" lets user compare two (maybe more) countries data 
+ profiles.  Uses d3-geo to draw a clickable map, and d3 to create a 
+ chart with data over time.  Uses API call to fetch geo-data.
+
+ -- "Geo-explorer" page uses gloal projection to make a 3-D, interactive
+ data display that the user can interact with spatially.  
+
+ Server side:
+ -- Jupyter based pipeline does ETL to gather data and load it into database
+ -- Flask app handles access to database through server URL routes called 
+ by the client base don user choices:
+ Preliminary routes:  <country code> -- JSON object with timeseries data
+   globe/<data>/<year> -- JSON objects meant for the 3-D interactive demo
+   Will use WebGL Globe (based on THREE.js) or other library
+
+Client side files:
+/static
+    / css
+       --styles.css
+    /js
+        --compare.js
+        --globe.js
+    /images ? 
+/templates
+   -- index.html
+   -- compare.html
+   -- globe.html
+   -- about.html
+   
