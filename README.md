@@ -25,6 +25,7 @@
  - Timelapse graphs
  - Comparision of access to health care
  - Mapping
+ ![alt tag](https://github.com/dcalara/right-to-healthcare/blob/master/basic_site_plan.jpg)
  
 # GibHub Repository
 https://github.com/dcalara/right-to-healthcare.git
