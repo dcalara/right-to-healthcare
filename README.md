@@ -1,7 +1,7 @@
 # Project Proposal - The Right to Health Care for All
 
 # Inspiration
-  Health care is a fundamental human right. However, government policies do not reflect that. People in the United States are not guaranteed basic human needs such as clean water, food, housing, sanitation, due to our current health care system. Other countries around the world provide univeral health care for their population. How does the health care system in other countries compare to the health care system in the United States? 
+  Health care is a fundamental human right. However, government policies do not reflect that. People in the United States are not guaranteed basic human needs such as clean water, food, housing, sanitation, due to our current health care system. Other countries around the world provide univeral health care for their population. How do the health care systems in other countries compare to the health care system in the United States? 
 
 # Data Sources
 - Global Health Observatory data repository from World Health Organization (2012 - 2018)
@@ -23,9 +23,53 @@
 
 # Visuals
  - Timelapse graphs
- - Comparision of access to health care
+ ![alt tag](https://github.com/dcalara/right-to-healthcare/blob/master/comparison_over_time.PNG?raw=true)
+ - Comparisions between countries
+![alt tag](https://github.com/dcalara/right-to-healthcare/blob/master/example-1.PNG?raw=true)
  - Mapping
+ ![alt tag](https://github.com/dcalara/right-to-healthcare/blob/master/map_with_slider.PNG?raw=true)
+ - Website Sketch
  ![alt tag](https://github.com/dcalara/right-to-healthcare/blob/master/basic_site_plan.jpg)
+ 
+ # App Design
+
+Client Side:
+
+ -- "Landing page" contains static visualizations (Plotly?) and links to data
+ explorer tools.  The page showcases the most interesting findings (about 4)
+ designed to draw the user in and get them to explore the tools.  Also keeps
+ the server interaction limited only to people who click through, and keeps
+ some content visible even if server routes are having issues.
+
+ -- "Data compare page" lets user compare two (maybe more) countries data 
+ profiles.  Uses d3-geo to draw a clickable map, and d3 to create a 
+ chart with data over time.  Uses API call to fetch geo-data.
+
+ -- "Geo-explorer" page uses gloal projection to make a 3-D, interactive
+ data display that the user can interact with spatially.  
+
+ Server side:
+ -- Jupyter based pipeline does ETL to gather data and load it into database
+ -- Flask app handles access to database through server URL routes called 
+ by the client base don user choices:
+ Preliminary routes:  <country code> -- JSON object with timeseries data
+   globe/<data>/<year> -- JSON objects meant for the 3-D interactive demo
+   Will use WebGL Globe (based on THREE.js) or other library
+
+Client side files:
+/static
+    / css
+       --styles.css
+    /js
+        --compare.js
+        --globe.js
+    /images ? 
+/templates
+   -- index.html
+   -- compare.html
+   -- globe.html
+   -- about.html
+
  
 # GibHub Repository
 https://github.com/dcalara/right-to-healthcare.git
