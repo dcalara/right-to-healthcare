@@ -1,7 +1,7 @@
 # Project Proposal - The Right to Health Care for All
 
 # Inspiration
-  Health care is a fundamental human right. However, government policies do not reflect that. People in the United States are not guaranteed basic human needs such as clean water, food, housing, sanitation, due to our current health care system. Other countries around the world provide univeral health care for their population. How do the health care systems in other countries compare to the health care system in the United States? 
+  Health care is a fundamental human right. However, government policies do not reflect that. People in the United States are not guaranteed basic human needs such as clean water, food, housing, sanitation, due to our current health care system. Other countries around the world provide univeral health care for their population. How do the health care systems in other countries compare to the health care system in the United States?  How do differences in health care policies affect health outcomes?
 
 # Data Sources
 - Global Health Observatory data repository from World Health Organization (2012 - 2018)
