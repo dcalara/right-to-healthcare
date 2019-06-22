@@ -1,0 +1,23 @@
+Equal Earth projection:
+
+https://en.wikipedia.org/wiki/Equal_Earth_projection
+
+nvented by Bojan Šavrič, Bernhard Jenny, and Tom Patterson in 2018
+
+GeoJSON for countries
+
+https://geojson-maps.ash.ms/
+
+These maps are sourced from Natural Earth and are in the public domain, so you are free to use them in any way without attribution.
+
+Site © 2016 @ashkyd.
+
+Ash Kyd 
+
+World map drawing code:
+Micah Stubbs’s Block 8e15870eb432a21f0bc4d3d527b2d14f
+Updated February 10, 2018
+world map 02 update to d3 v4
+
+
+
