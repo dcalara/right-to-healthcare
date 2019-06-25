@@ -13,12 +13,12 @@ POSTGRES = {
 }
 
 app.config['DEBUG'] = True
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/country_test'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/country_test'
+#app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-db = SQLAlchemy(app)
+#db = SQLAlchemy(app)
 
-from models import Countries 
+#from models import Countries 
 
 @app.route('/')
 def landing():
