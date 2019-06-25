@@ -45,7 +45,59 @@
         </nav>
         <!--Main body on landing page, grid for maps-->
     <div class="globe" id="globe_1">
-
+      <select id="selDataset1" onchange="getData(this.value)">
+        <option value="electricity">Access to Electricity</option>
+        <option value="staffed_birth">Births Attended by Skilled Health Staff</option>
+        <option value="birth_rate">Birth Rate</option>
+        <option value="broadband">Broadband Subscriptions</option>
+        <option value="corruption">Corruption</option>
+        <option value="death_rate">Death Rate</option>
+        <option value="econ_freedom">Economic Freedom</option>
+        <option value="female_out_school">Female Children Not in School</option>
+        <option value="fertility_rate">Fertility Rate</option> 
+        <option value="health_expenditure_GDP">Health Expenditure (% of GDP)</option>
+        <option value="health_expenditure_person">Health Expenditure Per Capita</option>        
+        <option value="healthcare_coverage">Healthcare Coverage</option>
+        <option value="hospital_beds">Hospital Beds</option>
+        <option value="human_rights_score">Human Rights Score</option>
+        <option value="infant_mortality_rate">Infant Mortality Rate</option>
+        <option value="life_expectancy">Life Expectancy</option>
+        <option value="life_expectancy_male">Life Expectancy (Male)</option>
+        <option value="life_expectancy_female">Life Expectancy (Female)</option>
+        <option value="female_literacy_adult">Literacy (Adult Female)</option>
+        <option value="female_literacy_youth">Literacy (Youth Female)</option>
+        <option value="medical_doctors">Medical Doctors (per 10,000)</option>
+        <option value="migration">Net Migration</option>
+        <option value="last_grade_female">To Last Grade (Female)</option>
+        <option value="last_grade_male">To Last Grade (Male)</option>
+    </select>
+      
+    <select id="selDataset2" onchange="getData(this.value)">
+      <option value="electricity">Access to Electricity</option>
+      <option value="staffed_birth">Births Attended by Skilled Health Staff</option>
+      <option value="birth_rate">Birth Rate</option>
+      <option value="broadband">Broadband Subscriptions</option>
+      <option value="corruption">Corruption</option>
+      <option value="death_rate">Death Rate</option>
+      <option value="econ_freedom">Economic Freedom</option>
+      <option value="female_out_school">Female Children Not in School</option>
+      <option value="fertility_rate">Fertility Rate</option> 
+      <option value="health_expenditure_GDP">Health Expenditure (% of GDP)</option>
+      <option value="health_expenditure_person">Health Expenditure Per Capita</option>        
+      <option value="healthcare_coverage">Healthcare Coverage</option>
+      <option value="hospital_beds">Hospital Beds</option>
+      <option value="human_rights_score">Human Rights Score</option>
+      <option value="infant_mortality_rate">Infant Mortality Rate</option>
+      <option value="life_expectancy">Life Expectancy</option>
+      <option value="life_expectancy_male">Life Expectancy (Male)</option>
+      <option value="life_expectancy_female">Life Expectancy (Female)</option>
+      <option value="female_literacy_adult">Literacy (Adult Female)</option>
+      <option value="female_literacy_youth">Literacy (Youth Female)</option>
+      <option value="medical_doctors">Medical Doctors (per 10,000)</option>
+      <option value="migration">Net Migration</option>
+      <option value="last_grade_female">To Last Grade (Female)</option>
+      <option value="last_grade_male">To Last Grade (Male)</option>
+  </select>
     </div>
     <div class="container mt-2 mt-md-5 text-light bg-secondary">
       Last updated 06-22-2019 by UCBX Health Data Team
