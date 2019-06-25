@@ -44,13 +44,13 @@
 
 # Visuals
  - Timelapse graphs
- ![alt tag](https://github.com/dcalara/right-to-healthcare/blob/master/comparison_over_time.PNG?raw=true)
+ ![alt tag](https://github.com/dcalara/right-to-healthcare/blob/master/Proposal/comparison_over_time.PNG?raw=true)
  - Comparisions between countries
-![alt tag](https://github.com/dcalara/right-to-healthcare/blob/master/example-1.PNG?raw=true)
+![alt tag](https://github.com/dcalara/right-to-healthcare/blob/master/Proposal/example-1.PNG?raw=true)
  - Mapping
- ![alt tag](https://github.com/dcalara/right-to-healthcare/blob/master/map_with_slider.PNG?raw=true)
+ ![alt tag](https://github.com/dcalara/right-to-healthcare/blob/master/Proposal/map_with_slider.PNG?raw=true)
  - Website Sketch
- ![alt tag](https://github.com/dcalara/right-to-healthcare/blob/master/basic_site_plan.jpg)
+ ![alt tag](https://github.com/dcalara/right-to-healthcare/blob/master/Proposal/basic_site_plan.jpg)
  
  # App Design
 
