@@ -6,11 +6,9 @@ source activate rh_env
 
 conda install -c conda-forge flask
 
-conda install -c conda-forge flask-sqlalchemy
-
-conda install -c conda-forge psycopg2
-
 pip install gunicorn
+
+
 
 pip freeze > requirements.txt
 
