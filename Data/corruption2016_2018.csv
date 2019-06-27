@@ -1,0 +1,181 @@
+Country,ISO3,2018,2017,2016
+Afghanistan,AFG,16,15,15
+Albania,ALB,36,38,39
+Algeria,DZA,35,33,34
+Angola,AGO,19,19,18
+Argentina,ARG,40,39,36
+Armenia,ARM,35,35,33
+Australia,AUS,77,77,79
+Austria,AUT,76,75,75
+Azerbaijan,AZE,25,31,30
+Bahamas,BHS,65,65,66
+Bahrain,BHR,36,36,43
+Bangladesh,BGD,26,28,26
+Barbados,BRB,68,68,61
+Belarus,BLR,44,44,40
+Belgium,BEL,75,75,77
+Benin,BEN,40,39,36
+Bhutan,BTN,68,67,65
+Bolivia,BOL,29,33,33
+Bosnia and Herzegovina,BIH,38,38,39
+Botswana,BWA,61,61,60
+Brazil,BRA,35,37,40
+Brunei Darussalam,BRN,63,62,58
+Bulgaria,BGR,42,43,41
+Burkina Faso,BFA,41,42,42
+Burundi,BDI,17,22,20
+Cabo Verde,CPV,57,55,59
+Cambodia,KHM,20,21,21
+Cameroon,CMR,25,25,26
+Canada,CAN,81,82,82
+Central African Republic,CAF,26,23,20
+Chad,TCD,19,20,20
+Chile,CHL,67,67,66
+China,CHN,39,41,40
+Colombia,COL,36,37,37
+Comoros,COM,27,27,24
+Congo,COG,19,21,20
+Costa Rica,CRI,56,59,58
+Cote d'Ivoire,CIV,35,36,34
+Croatia,HRV,48,49,49
+Cuba,CUB,47,47,47
+Cyprus,CYP,59,57,55
+Czech Republic,CZE,59,57,55
+Democratic Republic of the Congo,COD,20,21,21
+Denmark,DNK,88,88,90
+Djibouti,DJI,31,31,30
+Dominica,DMA,57,57,59
+Dominican Republic,DOM,30,29,31
+Ecuador,ECU,34,32,31
+Egypt,EGY,35,32,34
+El Salvador,SLV,35,33,36
+Equatorial Guinea,GNQ,16,17,
+Eritrea,ERI,24,20,18
+Estonia,EST,73,71,70
+Ethiopia,ETH,34,35,34
+Finland,FIN,85,85,89
+France,FRA,72,70,69
+Gabon,GAB,31,32,35
+Gambia,GMB,37,30,26
+Georgia,GEO,58,56,57
+Germany,DEU,80,81,81
+Ghana,GHA,41,40,43
+Greece,GRC,45,48,44
+Grenada,GRD,52,52,56
+Guatemala,GTM,27,28,28
+Guinea,GIN,28,27,27
+Guinea Bissau,GNB,16,17,16
+Guyana,GUY,37,38,34
+Haiti,HTI,20,22,20
+Honduras,HND,29,29,30
+Hong Kong,HKG,76,77,77
+Hungary,HUN,46,45,48
+Iceland,ISL,76,77,78
+India,IND,41,40,40
+Indonesia,IDN,38,37,37
+Iran,IRN,28,30,29
+Iraq,IRQ,18,18,17
+Ireland,IRL,73,74,73
+Israel,ISR,61,62,64
+Italy,ITA,52,50,47
+Jamaica,JAM,44,44,39
+Japan,JPN,73,73,72
+Jordan,JOR,49,48,48
+Kazakhstan,KAZ,31,31,29
+Kenya,KEN,27,28,26
+"Korea, North",PRK,14,17,12
+"Korea, South",KOR,57,54,53
+Kosovo,KSV,37,39,36
+Kuwait,KWT,41,39,41
+Kyrgyzstan,KGZ,29,29,28
+Laos,LAO,29,29,30
+Latvia,LVA,58,58,57
+Lebanon,LBN,28,28,28
+Lesotho,LSO,41,42,39
+Liberia,LBR,32,31,37
+Libya,LBY,17,17,14
+Lithuania,LTU,59,59,59
+Luxembourg,LUX,81,82,81
+Macedonia,MKD,37,35,37
+Madagascar,MDG,25,24,26
+Malawi,MWI,32,31,31
+Malaysia,MYS,47,47,49
+Maldives,MDV,31,33,36
+Mali,MLI,32,31,32
+Malta,MLT,54,56,55
+Mauritania,MRT,27,28,27
+Mauritius,MUS,51,50,54
+Mexico,MEX,28,29,30
+Moldova,MDA,33,31,30
+Mongolia,MNG,37,36,38
+Montenegro,MNE,45,46,45
+Morocco,MAR,43,40,37
+Mozambique,MOZ,23,25,27
+Myanmar,MMR,29,30,28
+Namibia,NAM,53,51,52
+Nepal,NPL,31,31,29
+Netherlands,NLD,82,82,83
+New Zealand,NZL,87,89,90
+Nicaragua,NIC,25,26,26
+Niger,NER,34,33,35
+Nigeria,NGA,27,27,28
+Norway,NOR,84,85,85
+Oman,OMN,52,44,45
+Pakistan,PAK,33,32,32
+Panama,PAN,37,37,38
+Papua New Guinea,PNG,28,29,28
+Paraguay,PRY,29,29,30
+Peru,PER,35,37,35
+Philippines,PHL,36,34,35
+Poland,POL,60,60,62
+Portugal,PRT,64,63,62
+Qatar,QAT,62,63,61
+Romania,ROU,47,48,48
+Russia,RUS,28,29,29
+Rwanda,RWA,56,55,54
+Saint Lucia,LCA,55,55,60
+Saint Vincent and the Grenadines,VCT,58,58,60
+Sao Tome and Principe,STP,46,46,46
+Saudi Arabia,SAU,49,49,46
+Senegal,SEN,45,45,45
+Serbia,SRB,39,41,42
+Seychelles,SYC,66,60,
+Sierra Leone,SLE,30,30,30
+Singapore,SGP,85,84,84
+Slovakia,SVK,50,50,51
+Slovenia,SVN,60,61,61
+Solomon Islands,SLB,44,39,42
+Somalia,SOM,10,9,10
+South Africa,ZAF,43,43,45
+South Sudan,SSD,13,12,11
+Spain,ESP,58,57,58
+Sri Lanka,LKA,38,38,36
+Sudan,SDN,16,16,14
+Suriname,SUR,43,41,45
+Swaziland,SWZ,38,39,
+Sweden,SWE,85,84,88
+Switzerland,CHE,85,85,86
+Syria,SYR,13,14,13
+Taiwan,TWN,63,63,61
+Tajikistan,TJK,25,21,25
+Tanzania,TZA,36,36,32
+Thailand,THA,36,37,35
+Timor-Leste,TLS,35,38,35
+Togo,TGO,30,32,32
+Trinidad and Tobago,TTO,41,41,35
+Tunisia,TUN,43,42,41
+Turkey,TUR,41,40,41
+Turkmenistan,TKM,20,19,22
+Uganda,UGA,26,26,25
+Ukraine,UKR,32,30,29
+United Arab Emirates,ARE,70,71,66
+United Kingdom,GBR,80,82,81
+United States of America,USA,71,75,74
+Uruguay,URY,70,70,71
+Uzbekistan,UZB,23,22,21
+Vanuatu,VUT,46,43,
+Venezuela,VEN,18,18,17
+Vietnam,VNM,33,35,33
+Yemen,YEM,14,16,14
+Zambia,ZMB,35,37,38
+Zimbabwe,ZWE,22,22,22
