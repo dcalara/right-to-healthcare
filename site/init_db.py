@@ -1,55 +1,23 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# # Database Load
-
-# In[2]:
-
-
 from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.dialects.postgresql import JSON
-from flask import render_template
 import csv
-import json
 import glob
 import psycopg2
+import os
 
+# db configuration
 app = Flask(__name__)
 
 app.config['DEBUG'] = True
-DB_URL = 'postgresql+psycopg2://{user}:{pw}@{url}/{db}'.format(user='postgres',pw='********',url='localhost',db='country_test')
-'postgresql+psycopg2://postgres:Virginis1212@localhost/country_test'
+DB_URL = os.environ['DATABASE_URL']
 app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
+print(DB_URL)
 db = SQLAlchemy(app)
 
-
-# In[ ]:
-
-
-
-
-
-# In[2]:
-
-
-class BaseModel(db.Model):
-    """Base data model for all objects"""
-    __abstract__ = True
-
-    def __repr__(self):
-        """Define a base way to print models"""
-        return '%s(%s)' % (self.__class__.__name__, {
-            column: value
-            for column, value in self._to_dict().items()
-        })
-
-
-class Countries(BaseModel, db.Model):
+class Countries(db.Model):
     """Model for the countries table"""
-    __tablename__ = 'countries'
+    __tablename__ = 'countries3'
 
     id = db.Column(db.Integer, primary_key = True)
     iso_a3 = db.Column(db.String())
@@ -57,66 +25,37 @@ class Countries(BaseModel, db.Model):
     indicator_code = db.Column(db.String())
     year = db.Column(db.Integer)
     value = db.Column(db.String())
-    
-    def __init__(self, id, iso_a3, country_name, indicator_code, year, value):
-        self.id = id
-        self.iso_a3 = iso_a3
-        self.country_name = country_name
-        self.indicator_code = indicator_code
-        self.year = year
-        self.value = value
 
-
-# In[3]:
-
-
-db.drop_all()
-db.create_all()
-
-
-# In[4]:
-
-
-# Get all .csv files in ../Output_Data directory
-csvlist = [f for f in glob.glob("../Output_data/*.csv")]
-csvlist
-
-
-# In[5]:
-
-
-alldata = []
-for csvfile in csvlist:
-    with open(csvfile, encoding='utf-8-sig') as f:
-        reader = csv.reader(f)
-        newdata = [row for row in reader]
-        alldata.append(newdata)
-len(alldata)
-
-
-# In[6]:
-
-
-alldata[2][0][0]
-
-
-# In[7]:
-
+def import_csv_data():
+    """Grab a list of csv's in the folder Output_data, then transform each
+    into a 'list of lists' inside of a third list."""
+    csvlist = [f for f in glob.glob("../Output_data/*.csv")]
+    #alldata will be a '3-D' list, list of csvs -> list of rows -> list of columns
+    data = []
+    for csvfile in csvlist:
+        with open(csvfile, encoding='utf-8-sig') as f:
+            reader = csv.reader(f)
+            newdata = [row for row in reader]
+            data.append(newdata)
+    return data
 
 def get_grid_type(grid):
+    """Parse a list of lists derived from a csv file, use contents
+    of header row to determine whether multi-year data is listed with
+    one column per year, or if each year uses a separate row"""
     if 'Year' in grid[0]:
-        return 'row_by_year'
+        return 'year_by_row'
     else:
         for year_to_check in range(1960, 2999):
             if str(year_to_check) in grid[0]:
-                return 'col_by_year'
+                return 'year_by_col'
+    #Default if neither check was successful
     return 'undetermined'
 
-
-# In[10]:
-
-
-def find_key_cols_for_by_year(grid):
+def find_key_cols_year_by_col(grid):
+    """Finds the indices of the key columns in a csv file previously 
+    converted to a list of lists (grid). Use when each year is a separate
+    column"""
     started_flag = False
     country_name_ix = -1
     country_code_ix = -1
@@ -138,6 +77,7 @@ def find_key_cols_for_by_year(grid):
         elif grid[0][col_ix] == 'Indicator Code':
             indicator_code_ix = col_ix
         else:
+            #Look for column headings that are numbers
             try:
                 year_col = int(grid[0][col_ix])
             except ValueError:
@@ -152,11 +92,10 @@ def find_key_cols_for_by_year(grid):
                         started_flag = True
     return country_name_ix, country_code_ix, indicator_code_ix, first_year_ix, last_year_ix
 
-
-# In[11]:
-
-
-def find_key_cols_for_by_row(grid):
+def find_key_cols_year_by_row(grid):
+    """Finds the indices of the key columns in a csv file previously 
+    converted to a list of lists (grid). Use when each year is a separate
+    row"""
     country_name_ix = -1
     country_code_ix = -1
     indicator_code_ix = -1
@@ -180,20 +119,20 @@ def find_key_cols_for_by_row(grid):
     return country_name_ix, country_code_ix, indicator_code_ix, year_ix
 
 
-# In[12]:
-
-
-def process_by_year(grid, global_id):
+def process_year_by_col(grid, global_id):
+    """Takes data from a csv file converted to a list of lists (row/col grid)
+    and adds each data point to a db.  Use when multiple years are in 
+    the same row"""
     added_count = 0
-    cname_col, ccode_col, icode_col, firstyr_col, lastyr_col = find_key_cols_for_by_year(grid)
+    cname_col, ccode_col, icode_col, firstyr_col, lastyr_col = find_key_cols_year_by_col(grid)
     if (cname_col < 0) or (ccode_col < 0) or (icode_col < 0) or (firstyr_col < 0) or (lastyr_col < 0):
-        print('Unable to parse csv data')
+        #Abort processing if any key column indices are undetermined
         return added_count
     at_header = True
     for row in grid:
         if at_header:
             at_header = False
-            continue
+            continue  #Skip to next row
         else:
             ccode = row[ccode_col]
             cname = row[cname_col]
@@ -202,28 +141,31 @@ def process_by_year(grid, global_id):
                 iyear = int(grid[0][year_ix])
                 ivalue = row[year_ix]
                 if ivalue:
-                    data_to_add = Countries(global_id, ccode, cname, icode, iyear, ivalue)
+                    data_to_add = Countries(iso_a3=ccode, 
+                                            country_name=cname, 
+                                            indicator_code=icode, 
+                                            year=iyear, 
+                                            value=ivalue)
                     db.session.add(data_to_add)
-                    db.session.commit
+                    db.session.commit()
                     global_id += 1
                     added_count += 1
     return added_count
 
-
-# In[13]:
-
-
-def process_by_row(grid, global_id):
+def process_year_by_row(grid, global_id):
+    """Takes data from a csv file converted to a list of lists (row/col grid)
+    and adds each data point to a db.  Use when a single year's data is found in 
+    one row"""
     added_count = 0
-    cname_col, ccode_col, icode_col, yr_col = find_key_cols_for_by_row(grid)
+    cname_col, ccode_col, icode_col, yr_col = find_key_cols_year_by_row(grid)
     if (cname_col < 0) or (ccode_col < 0) or (icode_col < 0) or (yr_col < 0):
-        print('Unable to parse csv data')
+        #Abort adding data if any key column indices are undetermined
         return added_count
     at_header = True
     for row in grid:
         if at_header:
             at_header = False
-            continue
+            continue  #Skip to next row
         else:
             ccode = row[ccode_col]
             cname = row[cname_col]
@@ -231,47 +173,39 @@ def process_by_row(grid, global_id):
             iyear = int(row[yr_col])
             ivalue = row[yr_col + 1]
             if ivalue:
-                data_to_add = Countries(global_id, ccode, cname, icode, iyear, ivalue)
+                data_to_add = Countries(iso_a3=ccode, 
+                                        country_name=cname, 
+                                        indicator_code=icode, 
+                                        year=iyear, 
+                                        value=ivalue)
                 db.session.add(data_to_add)
-                db.session.commit
+                db.session.commit()
                 global_id += 1
                 added_count += 1
     return added_count
 
+def main():
+    """Sets up Postgres database, imports a set of csv's from the Output_data file,
+    then loads the data into the database based on how the data is arrayed in each csv"""
+    db.drop_all()
+    db.create_all()
+    alldata = import_csv_data()
+    #Start db primary key index (as global_id here) at 1, and track as each grid is processed
+    global_id = 1
+    #alldata is a list of two_d_grids (each grid is a list of lists holding the contents of one csv file)
+    for two_d_grid in alldata:
+        grid_type = get_grid_type(two_d_grid)
+        if grid_type == 'year_by_col':
+            # The processing routines add data to db as a side effect, returning # of rows added
+            num_added = process_year_by_col(two_d_grid, global_id)
+            global_id += num_added
+            print('Added ' + str(num_added))
+        elif grid_type == 'year_by_row':
+            num_added = process_year_by_row(two_d_grid, global_id)
+            global_id += num_added
+            print('Added ' + str(num_added))
+        #Do nothing if the grid type doesn't match a pre-defined template
+    #Finished processing all grids
 
-# In[ ]:
-
-
-
-
-
-# In[14]:
-
-
-global_id = 0
-for two_d_grid in alldata:
-    grid_type = get_grid_type(two_d_grid)
-    if grid_type == 'col_by_year':
-        num_added = process_by_year(two_d_grid, global_id)
-        print('Grid with multiple years processed: added ' + str(num_added))
-        global_id += num_added
-    elif grid_type == 'row_by_year':
-        num_added = process_by_row(two_d_grid, global_id)
-        print('Grid with one year per row processed: added ' + str(num_added))
-        global_id += num_added
-
-
-# In[19]:
-
-
-test_result = Countries.query.filter_by(indicator_code ='SH.STA.BRTC.ZS').order_by(Countries.iso_a3).all()
-
-
-# In[20]:
-
-
-len(test_result)
-
-
-
-
+if __name__ == '__main__':
+    main()

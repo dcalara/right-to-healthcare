@@ -1,24 +1,19 @@
 from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask import render_template
+import os
+import pandas as pd
+import numpy as np
+from models import db, Countries
 
 app = Flask(__name__)
 
-POSTGRES = {
-    'user': 'postgres',
-    'pw': 'password',
-    'db': 'my_database',
-    'host': 'localhost',
-    'port': '5432',
-}
-
+DB_URL = os.environ['DATABASE_URL']
 app.config['DEBUG'] = True
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/country_test'
+app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-db = SQLAlchemy(app)
-
-from models import Countries 
+db.init_app(app)
 
 @app.route('/')
 def landing():
@@ -59,6 +54,40 @@ def testroute():
                  'KAZ':0.9,
                  'MOZ':0.98}
     return jsonify(test_data)
+
+@app.route("/corr/<var1>/<var2>")
+def correlate_all(var1,var2):
+    """Return JSON of countries with correlation coefficients for var1, var2.
+    Use the indicator names with a '.' replaced with a '-'."""
+    code1 = var1.replace("-",".")
+    code2 = var2.replace("-",".")
+    corrs = dict()
+
+    query1 = db.session.query(Countries).\
+        filter_by(indicator_code=code1).\
+        statement
+    df1 = pd.read_sql_query(query1, db.session.bind)
+    df1.columns = ['pk1','isoa3','name1','code1','year','value1']
+    query2 = db.session.query(Countries).\
+        filter_by(indicator_code=code2).\
+        statement
+    df2 = pd.read_sql_query(query2, db.session.bind)  
+    df2.columns = ['pk2','isoa3','name2','code2','year','value2']
+    dfm = df1.merge(df2,how='inner',on=['isoa3','year'])
+
+    isoa3s = list(set(dfm['isoa3'].values))
+
+    for isoa3 in isoa3s:
+        dfm1c = dfm.loc[dfm['isoa3'] == isoa3]
+        newcorr = "null"
+        if len(dfm1c) > 3:
+            newcorr = dfm1c['value1'].astype('float').corr(dfm1c['value2'].astype('float'))
+            if np.isnan(newcorr):
+                newcorr = "null"
+        corrs[isoa3] = newcorr
+        
+    
+    return jsonify(corrs)
 
 if __name__ == '__main__':
     app.run()
