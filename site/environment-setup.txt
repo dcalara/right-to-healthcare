@@ -1,0 +1,14 @@
+Environment commands:
+
+conda create -c conda-forge --name rh_env python=3.6
+
+source activate rh_env
+
+conda install -c conda-forge flask
+
+pip install gunicorn
+
+
+
+pip freeze > requirements.txt
+
