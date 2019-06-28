@@ -8,11 +8,11 @@ import os
 # db configuration
 app = Flask(__name__)
 
-app.config['DEBUG'] = True
+app.config['DEBUG'] = False
 DB_URL = os.environ['DATABASE_URL']
 app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-print(DB_URL)
+
 db = SQLAlchemy(app)
 
 class Countries(db.Model):
@@ -49,6 +49,8 @@ def get_grid_type(grid):
         for year_to_check in range(1960, 2999):
             if str(year_to_check) in grid[0]:
                 return 'year_by_col'
+            elif (str(year_to_check) + '.0') in grid[0]:
+                return 'year_by_col'
     #Default if neither check was successful
     return 'undetermined'
 
@@ -64,7 +66,11 @@ def find_key_cols_year_by_col(grid):
     last_year_ix = -1
     num_cols = len(grid[0])
     for col_ix in range(num_cols):
-        if grid[0][col_ix] == 'Country_Name':
+        if grid[0][col_ix] == 'Country':
+            country_name_ix = col_ix
+        elif grid[0][col_ix] == 'Entity':
+            country_name_ix = col_ix
+        elif grid[0][col_ix] == 'Country_Name':
             country_name_ix = col_ix
         elif grid[0][col_ix] == 'Country Name':
             country_name_ix = col_ix
@@ -72,18 +78,24 @@ def find_key_cols_year_by_col(grid):
             country_code_ix = col_ix
         elif grid[0][col_ix] == 'Country Code':
             country_code_ix = col_ix
+        elif grid[0][col_ix] == 'Country ISO3':
+            country_code_ix = col_ix
+        elif grid[0][col_ix] == 'Code':
+            country_code_ix = col_ix
         elif grid[0][col_ix] == 'Indicator_Code':
             indicator_code_ix = col_ix
         elif grid[0][col_ix] == 'Indicator Code':
             indicator_code_ix = col_ix
+        elif grid[0][col_ix] == 'Indicator Id':
+            indicator_code_ix = col_ix
         else:
             #Look for column headings that are numbers
             try:
-                year_col = int(grid[0][col_ix])
+                year_col = int(float(grid[0][col_ix]))
             except ValueError:
                 pass
             else:
-                if (year_col > 1960) and (year_col < 2999):
+                if (year_col > 1940) and (year_col < 2999):
                     if started_flag:
                         last_year_ix = col_ix
                     else:
@@ -102,7 +114,11 @@ def find_key_cols_year_by_row(grid):
     year_ix = -1
     num_cols = len(grid[0])
     for col_ix in range(num_cols):
-        if grid[0][col_ix] == 'Country_Name':
+        if grid[0][col_ix] == 'Country':
+            country_name_ix = col_ix
+        elif grid[0][col_ix] == 'Entity':
+            country_name_ix = col_ix
+        elif grid[0][col_ix] == 'Country_Name':
             country_name_ix = col_ix
         elif grid[0][col_ix] == 'Country Name':
             country_name_ix = col_ix
@@ -110,9 +126,15 @@ def find_key_cols_year_by_row(grid):
             country_code_ix = col_ix
         elif grid[0][col_ix] == 'Country Code':
             country_code_ix = col_ix
+        elif grid[0][col_ix] == 'Country ISO3':
+            country_code_ix = col_ix
+        elif grid[0][col_ix] == 'Code':
+            country_code_ix = col_ix
         elif grid[0][col_ix] == 'Indicator_Code':
             indicator_code_ix = col_ix
         elif grid[0][col_ix] == 'Indicator Code':
+            indicator_code_ix = col_ix
+        elif grid[0][col_ix] == 'Indicator Id':
             indicator_code_ix = col_ix
         elif grid[0][col_ix] == 'Year':
             year_ix = col_ix
@@ -138,7 +160,7 @@ def process_year_by_col(grid, global_id):
             cname = row[cname_col]
             icode = row[icode_col]
             for year_ix in range(firstyr_col, lastyr_col + 1):
-                iyear = int(grid[0][year_ix])
+                iyear = int(float(grid[0][year_ix]))
                 ivalue = row[year_ix]
                 if ivalue:
                     data_to_add = Countries(iso_a3=ccode, 
@@ -170,7 +192,7 @@ def process_year_by_row(grid, global_id):
             ccode = row[ccode_col]
             cname = row[cname_col]
             icode = row[icode_col]
-            iyear = int(row[yr_col])
+            iyear = int(float(row[yr_col]))
             ivalue = row[yr_col + 1]
             if ivalue:
                 data_to_add = Countries(iso_a3=ccode, 
