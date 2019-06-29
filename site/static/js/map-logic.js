@@ -49,11 +49,11 @@ function getRoutes(dataset) {
     default:
       return "HRP-SCORE";
       break;
-  }
+  }}
 
 // function to test country coloring -- temporary
 function getColor(num) {
-    console.log(num);
+    // console.log(num);
     const r = Math.min(Math.max(0,20*num),255);
     const g = Math.min(Math.max(0,255-20*num),255);
     const b = Math.min(Math.max(0,255 - num*num),255);
@@ -90,6 +90,30 @@ d3.json("../static/data/countries.json").then(  function(data) {
       .style('stroke', 'white')
       .style('stroke-width', 1.5)
       .style("opacity",0.8)
-   
+  
+  // Event handlers to get selections and make back end call
+  d3.select("#selDataset1").on("change", function () {
+    var var1 = d3.select("#selDataset1").node().value;
+    console.log(`Var 1: ${var1}`);
+    var r1 = getRoutes(var1);
+    console.log(`r1: ${r1}`);
+    var var2 = d3.select("#selDataset2").node().value;
+    console.log(`Var 2: ${var2}`);
+    var r2 = getRoutes(var2);
+    console.log(`r2: ${r2}`);
+    var route = "http://your-right-to-health-staging.herokuapp.com/corr/" + r1 + "/" + r2;
+    console.log(`Route: ${route}`);
+    console.log(d3.json(route)); 
+  })
+
+  d3.select("#selDataset2").on("change", function () {
+    var var2 = d3.select("#selDataset2").node().value;
+    var r2 = getRoutes(var2);
+    var var1 = d3.select("#selDataset1").node().value;
+    var r1 = getRoutes(var1);
+    var route = "http://your-right-to-health-staging.herokuapp.com/corr/" + r1 + "/" + r2;
+    console.log(`Route: ${route}`);
+    console.log(d3.json(route)); 
+  }) 
 
 });
