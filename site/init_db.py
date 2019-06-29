@@ -160,9 +160,9 @@ def process_year_by_col(grid, global_id):
             cname = row[cname_col]
             icode = row[icode_col]
             for year_ix in range(firstyr_col, lastyr_col + 1):
-                iyear = int(float(grid[0][year_ix]))
-                ivalue = row[year_ix]
-                if ivalue:
+                try:
+                    iyear = int(float(grid[0][year_ix]))
+                    ivalue = float(row[year_ix])
                     data_to_add = Countries(iso_a3=ccode, 
                                             country_name=cname, 
                                             indicator_code=icode, 
@@ -172,6 +172,8 @@ def process_year_by_col(grid, global_id):
                     db.session.commit()
                     global_id += 1
                     added_count += 1
+                except ValueError:
+                    pass
     return added_count
 
 def process_year_by_row(grid, global_id):
@@ -192,9 +194,9 @@ def process_year_by_row(grid, global_id):
             ccode = row[ccode_col]
             cname = row[cname_col]
             icode = row[icode_col]
-            iyear = int(float(row[yr_col]))
-            ivalue = row[yr_col + 1]
-            if ivalue:
+            try:
+                iyear = int(float(row[yr_col]))
+                ivalue = float(row[yr_col + 1])
                 data_to_add = Countries(iso_a3=ccode, 
                                         country_name=cname, 
                                         indicator_code=icode, 
@@ -204,6 +206,8 @@ def process_year_by_row(grid, global_id):
                 db.session.commit()
                 global_id += 1
                 added_count += 1
+            except ValueError:
+                pass
     return added_count
 
 def main():

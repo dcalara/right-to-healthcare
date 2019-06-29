@@ -44,8 +44,9 @@
           </div>
         </nav>
         <!--Main body on landing page, grid for maps-->
-    <div class="globe" id="globe_1">
-      <select id="selDataset1" onchange="getData(this.value)">
+    <div class="container" id="data_1">
+      <!-- alt  <select id="selDataset1" onchange="getData(this.value)">-->
+      <select id="selDataset1">
         <option value="electricity">Access to Electricity</option>
         <option value="staffed_birth">Births Attended by Skilled Health Staff</option>
         <option value="birth_rate">Birth Rate</option>
@@ -99,6 +100,7 @@
       <option value="last_grade_male">To Last Grade (Male)</option>
   </select>
     </div>
+    <div class="globe" id="globe_1"></div>
     <div class="container mt-2 mt-md-5 text-light bg-secondary">
       Last updated 06-22-2019 by UCBX Health Data Team
       <a class="container-link text-warning" href="https://opensource.org/licenses/MIT" target="_blank">
