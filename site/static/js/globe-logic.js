@@ -71,8 +71,6 @@ function getRoutes(dataset) {
       break;
   }
  
-  
-  <option value="infant_mortality_rate">Infant Mortality Rate</option>
 }
 
 function getGlobePolyColor(inputNum, minNum, maxNum) {
@@ -99,10 +97,6 @@ WE.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
 
 d3.select("#selDataset1").on("change", function () {
 
-  //  d3.select("#globe_1").html("");
-
- //   let options = { zoom: 1.0, position: [47.19537,8.524404] };
- //   let globe1 = new WE.map('globe_1', options); 
   
     WE.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
         attribution: '© OpenStreetMap contributors'
@@ -114,9 +108,30 @@ d3.select("#selDataset1").on("change", function () {
     console.log(req_route);
     d3.json("../static/data/countries.json").then(  function(data) { 
 
-        const req_url = "/ts_all/" + req_route + "/2000";
+        const req_url = "/ts_all/" + req_route;
 
-        return d3.json(req_url).then( function (isodict) {
+        return d3.json(req_url).then( function (dataByYear) {
+
+            // Get list of available years
+          let  yearsList = dataByYear.map( dataObj => dataObj.year);
+
+          d3.select("#selYear").selectAll("option").remove();
+
+            yearsList.forEach((yr) => {
+              d3.select("#selYear")
+                .append("option")
+                .text(yr)
+                .property("value", yr);
+            });
+
+            let selectedYear = d3.select("#selYear").node().value;
+           
+            let dataSingleYear = dataByYear.filter( function (dataYr) {
+              return dataYr.year == selectedYear;
+            });
+            console.log(dataSingleYear);
+            let isodict = dataSingleYear[0].data;
+ 
             // Get max and min values in object returned from server (isodict)
             // which is a set of iso_a3,value pairs 
             let minVal = 0.0;
