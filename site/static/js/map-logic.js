@@ -104,6 +104,10 @@ d3.json("../static/data/countries.json").then(  function(data) {
     var route = "http://your-right-to-health-staging.herokuapp.com/corr/" + r1 + "/" + r2;
     console.log(`Route: ${route}`);
     console.log(d3.json(route)); 
+    d3.json(route).then(function(data1){
+      svgMap.selectAll(".countries").selectAll(path)
+      .style("fill", function(d) {return getColor(data1[d.properties.iso_a3])})
+    });
   })
 
   d3.select("#selDataset2").on("change", function () {
@@ -114,6 +118,10 @@ d3.json("../static/data/countries.json").then(  function(data) {
     var route = "http://your-right-to-health-staging.herokuapp.com/corr/" + r1 + "/" + r2;
     console.log(`Route: ${route}`);
     console.log(d3.json(route)); 
+    d3.json(route).then(function(data2){
+      svgMap.selectAll(".countries").selectAll(path)
+      .style("fill", function(d) {return getColor(data2[d.properties.iso_a3])})
+    });
   }) 
 
 });

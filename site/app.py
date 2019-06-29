@@ -87,7 +87,6 @@ def correlate_all(var1,var2):
             if np.isnan(newcorr):
                 newcorr = "null"
         corrs[isoa3] = newcorr
-        
     return jsonify(corrs)
 
 @app.route("/ts_a3/<isoa3>/<var1>/<var2>")
