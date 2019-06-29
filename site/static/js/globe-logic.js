@@ -42,11 +42,37 @@ function getRoutes(dataset) {
     case "econ_freedom":
       return "747";
       break;
+    case "female_out_school":
+      return "SE-PRM-UNER-FE";
+      break;
+    case "fertility_rate":
+      return "SP-DYN-TFRT-IN";
+      break;
+    case "health_expenditure_GDP":
+      return "SH-XPD-CHEX-GD-ZS"
+      break;
+    case "hexlth_expenditure_person":
+      return "SH-XPD-CHEX-PP-CD"
+      break;
+    case "healthcare_coverage":
+      return "HLTH-INS";
+      break;
+    case "hospital_beds":
+      return "SH-MED-BEDS-ZS";
+      break;
+    case "human_rights_score":
+      return "HRP-SCORE";
+      break;
+    case "infant_mortality_rate":
+      return "SP-DYN-IMRT-IN";
+      break;
     default:
       return "HRP-SCORE";
       break;
   }
-
+ 
+  
+  <option value="infant_mortality_rate">Infant Mortality Rate</option>
 }
 
 function getGlobePolyColor(inputNum, minNum, maxNum) {
