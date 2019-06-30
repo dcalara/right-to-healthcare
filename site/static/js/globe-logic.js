@@ -428,7 +428,7 @@ d3.select("#selDataset1").on("change", function () {
         });
 
         let isodict = dataSingleYear[0].data;
-
+        console.log(isodict);
         // Get max and min values in object returned from server (isodict)
         // which is a set of iso_a3,value pairs 
         let minVal = 0.0;
@@ -437,15 +437,15 @@ d3.select("#selDataset1").on("change", function () {
 
         Object.keys(isodict).forEach( function (key) {
             if(firstKey) {
-                minVal = isodict[key];
-                maxVal = isodict[key];
+                minVal = +isodict[key];
+                maxVal = +isodict[key];
                 firstKey = false;
             }
             else {
-                if (isodict[key] > maxVal) {
+                if (+isodict[key] > maxVal) {
                   maxVal = isodict[key];
                 }
-                if (isodict[key] < minVal) {
+                if (+isodict[key] < minVal) {
                   minVal = isodict[key];
                 }
             }
@@ -453,7 +453,7 @@ d3.select("#selDataset1").on("change", function () {
 
         // Loop through every country provided and generate a polygon string object
         countryData.features.forEach( function (feature) {
-            let dataValue = isodict[feature.properties.iso_a3];
+            let dataValue = +isodict[feature.properties.iso_a3];
             if(dataValue) {
                 
                 let innerColor = getGlobePolyColor(dataValue, minVal, maxVal);
@@ -511,7 +511,7 @@ d3.select("#selDataset1").on("change", function () {
             });
 
             let isodict = dataSingleYear[0].data;
-
+            console.log(isodict);
             // Get max and min values in object returned from server (isodict)
             // which is a set of iso_a3,value pairs 
             let minVal = 0.0;
@@ -520,15 +520,15 @@ d3.select("#selDataset1").on("change", function () {
 
             Object.keys(isodict).forEach( function (key) {
                 if(firstKey) {
-                    minVal = isodict[key];
-                    maxVal = isodict[key];
+                    minVal = +isodict[key];
+                    maxVal = +isodict[key];
                     firstKey = false;
                 }
                 else {
-                    if (isodict[key] > maxVal) {
+                    if (+isodict[key] > maxVal) {
                       maxVal = isodict[key];
                     }
-                    if (isodict[key] < minVal) {
+                    if (+isodict[key] < minVal) {
                       minVal = isodict[key];
                     }
                 }
@@ -536,7 +536,7 @@ d3.select("#selDataset1").on("change", function () {
 
             // Loop through every country provided and generate a polygon string object
             countryData.features.forEach( function (feature) {
-                let dataValue = isodict[feature.properties.iso_a3];
+                let dataValue = +isodict[feature.properties.iso_a3];
                 if(dataValue) {
                     
                     let innerColor = getGlobePolyColor(dataValue, minVal, maxVal);

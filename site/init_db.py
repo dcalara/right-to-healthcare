@@ -156,22 +156,23 @@ def process_year_by_col(grid, global_id):
             at_header = False
             continue  #Skip to next row
         else:
-            ccode = row[ccode_col]
-            cname = row[cname_col]
-            icode = row[icode_col]
+            ccode = row[ccode_col].strip()
+            cname = row[cname_col].strip()
+            icode = row[icode_col].strip()
             for year_ix in range(firstyr_col, lastyr_col + 1):
                 try:
                     iyear = int(float(grid[0][year_ix]))
                     ivalue = float(row[year_ix])
-                    data_to_add = Countries(iso_a3=ccode, 
-                                            country_name=cname, 
-                                            indicator_code=icode, 
-                                            year=iyear, 
-                                            value=ivalue)
-                    db.session.add(data_to_add)
-                    db.session.commit()
-                    global_id += 1
-                    added_count += 1
+                    if ivalue > 0:
+                        data_to_add = Countries(iso_a3=ccode, 
+                                                country_name=cname, 
+                                                indicator_code=icode, 
+                                                year=iyear, 
+                                                value=ivalue)
+                        db.session.add(data_to_add)
+                        db.session.commit()
+                        global_id += 1
+                        added_count += 1
                 except ValueError:
                     pass
     return added_count
@@ -191,21 +192,22 @@ def process_year_by_row(grid, global_id):
             at_header = False
             continue  #Skip to next row
         else:
-            ccode = row[ccode_col]
-            cname = row[cname_col]
-            icode = row[icode_col]
+            ccode = row[ccode_col].strip()
+            cname = row[cname_col].strip()
+            icode = row[icode_col].strip()
             try:
                 iyear = int(float(row[yr_col]))
                 ivalue = float(row[yr_col + 1])
-                data_to_add = Countries(iso_a3=ccode, 
-                                        country_name=cname, 
-                                        indicator_code=icode, 
-                                        year=iyear, 
-                                        value=ivalue)
-                db.session.add(data_to_add)
-                db.session.commit()
-                global_id += 1
-                added_count += 1
+                if ivalue > 0:
+                    data_to_add = Countries(iso_a3=ccode, 
+                                            country_name=cname, 
+                                            indicator_code=icode, 
+                                            year=iyear, 
+                                            value=ivalue)
+                    db.session.add(data_to_add)
+                    db.session.commit()
+                    global_id += 1
+                    added_count += 1
             except ValueError:
                 pass
     return added_count
@@ -232,6 +234,7 @@ def main():
             print('Added ' + str(num_added))
         #Do nothing if the grid type doesn't match a pre-defined template
     #Finished processing all grids
+    print('Total additions:  ' + str(global_id))
 
 if __name__ == '__main__':
     main()
