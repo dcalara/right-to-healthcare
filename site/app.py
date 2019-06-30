@@ -15,6 +15,12 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
 
+@app.after_request 
+def after_request(response):
+    header = response.headers
+    header['Access-Control-Allow-Origin'] = '*'
+    return response
+
 @app.route('/')
 def landing():
     """Produces landing page"""
