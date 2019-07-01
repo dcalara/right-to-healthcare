@@ -116,6 +116,23 @@ d3.json("../static/data/countries.json").then(  function(data) {
       .style('stroke', 'white')
       .style('stroke-width', 1.5)
       .style("opacity",0.8)
+
+  let viridisColor = d3.scaleSequential().domain([-1.0,1.0])
+      .interpolator(d3.interpolateViridis)
+
+  let cb = colorbarV(viridisColor, 25, 150);
+
+  svgMap.append("g")
+      .attr("id","colorbar")
+      .attr("transform",`translate(${width * 0.95},${height * 0.6})`)
+      .call(cb);
+
+  svgMap.append("text")
+      .attr("text-anchor","middle")
+      .attr("transform",`translate(${width * 0.93},${height * 0.55})`)
+      .attr("id","colorbar-label")
+      .attr("stroke","black")
+      .html("<p>Pearson<p>Correlation<p>Coefficient");
   
   // Event handlers to get selections and make back end call
   d3.select("#selDataset1").on("change", function () {
@@ -130,6 +147,9 @@ d3.json("../static/data/countries.json").then(  function(data) {
     var route = "/corr/" + r1 + "/" + r2;
     console.log(`Route: ${route}`);
     d3.json(route).then( function (corrData) {
+    
+      d3.selectAll(".countries").selectAll("path")
+        .style("fill", d => d3.interpolateViridis((1 + corrData[d.properties.iso_a3]) / 2));
         
     });
   });
@@ -142,7 +162,12 @@ d3.json("../static/data/countries.json").then(  function(data) {
     var route = "/corr/" + r1 + "/" + r2;
     console.log(`Route: ${route}`);
     console.log(d3.json(route)); 
-
+    d3.json(route).then( function (corrData) {
+    
+      d3.selectAll(".countries").selectAll("path")
+        .style("fill",d => d3.interpolateViridis((1 + corrData[d.properties.iso_a3]) / 2));
+        
+    });
   });
 
   d3.selectAll(".countries")
@@ -174,14 +199,22 @@ d3.json("../static/data/countries.json").then(  function(data) {
             name: `${var2}`,
             line: {shape: 'linear'},
             };
-        let colors = ["rgba(67,67,67,1)", "rgba(0,0,128,1)"];
-        let lineSize = [2, 2];
-        let label = [`${var1}`,`${var2}`]
         let data = [trace1, trace2];
         let layout = {
             title: `Trends in ${var1} and ${var2} in ${countryName}`,
             xaxis: { title: "Year" },
-            yaxis: { title: "Values" }
+            yaxis: { 
+              title: `${var1}`,
+              titlefont: {color: 'rgb(67,67,67)'},
+              tickfont: {color: 'rgb(67,67,67)'}
+            },
+            yaxis2: {
+              title: `${var2}`,
+              titlefont: {color: 'rgb(0, 0, 128)'},
+              tickfont: {color: 'rgb(0, 0, 128)'},
+              overlaying: 'y',
+              side: 'right'
+            }
           };
             
         Plotly.newPlot("line-graph", data, layout);

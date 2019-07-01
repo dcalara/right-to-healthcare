@@ -44,9 +44,10 @@
           </div>
         </nav>
         <!--Main body on landing page, grid for maps-->
-    <div class="container" id="data_1">
+    <div class="d-flex justify-content-center" id="data_1">
       <!-- alt  <select id="selDataset1" onchange="getData(this.value)">-->
       <select id="selDataset1">
+        <option value="" selected disabled hidden>Choose Dataset...</option>
         <option value="electricity">Access to Electricity</option>
         <option value="staffed_birth">Births Attended by Skilled Health Staff</option>
         <option value="birth_rate">Birth Rate</option>
@@ -74,17 +75,27 @@
     </select>
       
     <select id="selYear">
-      <option value="2000">2000</option>
+        <option value="" selected disabled hidden>Year</option>
     </select>
 
     </div>
+    <div class="container" style="width:750px;">
+    <div class="row">
+    <div class="col-10">
     <div class="globe" id="globe_1"></div>
+    </div>
+    <div class="col-2">
+    <div class="legend-area" id="legend_1"></div>
+    </div>
+    </div>
+  </div>
     <div class="container mt-2 mt-md-5 text-light bg-secondary">
       Last updated 06-22-2019 by UCBX Health Data Team
       <a class="container-link text-warning" href="https://opensource.org/licenses/MIT" target="_blank">
-          MIT Open Source License</a>,??
+          MIT Open Source License</a>
           on <a href="https://github.com/dcalara/right-to-healthcare" target="_blank">Github</a> for details.
     <!-- Local js-->
+    <script type="text/javascript" src="../static/js/colorbar.js"></script>
     <script type="text/javascript" src="../static/js/globe-logic.js"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

@@ -382,12 +382,14 @@ function getGlobePolyColor(inputNum, minNum, maxNum) {
 
 }
 
-let options = { zoom: 1.0, position: [47.19537,8.524404] };
+let options = { atmosphere: true, sky: true, zoom: 1.0, position: [47.19537,8.524404] };
 let globe1 = new WE.map('globe_1', options); 
 
-WE.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
-    attribution: '© OpenStreetMap contributors'
-  }).addTo(globe1);
+WE.tileLayer('http://tileserver.maptiler.com/nasa/{z}/{x}/{y}.jpg', {
+  minZoom: 0,
+  maxZoom: 5,
+  attribution: 'NASA'
+}).addTo(globe1);
 
 d3.json("../static/data/countries.json").then(  function(data) { 
     // Store for later, run only once
@@ -398,7 +400,7 @@ d3.select("#selDataset1").on("change", function () {
 
     d3.select("#globe_1").select("canvas").remove();
 
-    let options = { zoom: 1.0, position: [47.19537,8.524404] };
+    let options = {atmosphere: true, sky: true, zoom: 1.0, position: [47.19537,8.524404] };
     let globe1 = new WE.map('globe_1', options); 
 
     let dataset1 = d3.select("#selDataset1").node().value;
@@ -421,6 +423,60 @@ d3.select("#selDataset1").on("change", function () {
               .property("value", yr);
         });
 
+        var minVal = 0.0;
+        var maxVal = 0.0;
+        let firstKey = true;
+        for (let i=0; i<dataByYear.length; i++) {
+            let isodict = dataByYear[i].data;
+            // Get max and min values in object returned from server (isodict)
+            // which is a set of iso_a3,value pairs
+
+            Object.keys(isodict).forEach( function (key) {
+                if(firstKey) {
+                    minVal = +isodict[key];
+                    maxVal = +isodict[key];
+                    firstKey = false;
+                }
+                else {
+                    if (+isodict[key] > maxVal) {
+                      maxVal = isodict[key];
+                    }
+                    if (+isodict[key] < minVal) {
+                      minVal = isodict[key];
+                    }
+                }
+            });
+        }
+
+        let viridisColor = d3.scaleSequential().domain([minVal,maxVal])
+        .interpolator(d3.interpolateViridis)
+
+        let cb = colorbarV(viridisColor, 25, 150);
+
+        d3.select("#legend_1").selectAll("svg").remove();
+        
+        let svg_legend = d3.select("#legend_1").append("svg")
+            .attr("width", "200px")
+            .attr("height","500px");
+        
+        svg_legend.selectAll("#colorbar")
+            .html("");
+
+        svg_legend.append("g")
+            .attr("id","colorbar")
+            .attr("transform",`translate(0,200)`)
+            .call(cb);
+
+        svg_legend.selectAll("#colorbar-label")
+            .html("");
+
+        svg_legend.append("text")
+            .attr("text-anchor","middle")
+            .attr("transform",`translate(50,180)`)
+            .attr("id","colorbar-label")
+            .attr("stroke","black")
+            .text("Value");
+
         let selectedYear = d3.select("#selYear").node().value;
 
         let dataSingleYear = dataByYear.filter( function (dataYr) {
@@ -428,28 +484,7 @@ d3.select("#selDataset1").on("change", function () {
         });
 
         let isodict = dataSingleYear[0].data;
-        console.log(isodict);
-        // Get max and min values in object returned from server (isodict)
-        // which is a set of iso_a3,value pairs 
-        let minVal = 0.0;
-        let maxVal = 0.0;
-        let firstKey = true;
 
-        Object.keys(isodict).forEach( function (key) {
-            if(firstKey) {
-                minVal = +isodict[key];
-                maxVal = +isodict[key];
-                firstKey = false;
-            }
-            else {
-                if (+isodict[key] > maxVal) {
-                  maxVal = isodict[key];
-                }
-                if (+isodict[key] < minVal) {
-                  minVal = isodict[key];
-                }
-            }
-        });
 
         // Loop through every country provided and generate a polygon string object
         countryData.features.forEach( function (feature) {
@@ -501,7 +536,7 @@ d3.select("#selDataset1").on("change", function () {
 
             d3.select("#globe_1").select("canvas").remove();
 
-            let options = { zoom: 1.0, position: [47.19537,8.524404] };
+            let options = {atmosphere: true, sky: true, zoom: 1.0, position: [47.19537,8.524404] };
             let globe1 = new WE.map('globe_1', options); 
 
             let selectedYear = d3.select("#selYear").node().value;
@@ -511,28 +546,6 @@ d3.select("#selDataset1").on("change", function () {
             });
 
             let isodict = dataSingleYear[0].data;
-            console.log(isodict);
-            // Get max and min values in object returned from server (isodict)
-            // which is a set of iso_a3,value pairs 
-            let minVal = 0.0;
-            let maxVal = 0.0;
-            let firstKey = true;
-
-            Object.keys(isodict).forEach( function (key) {
-                if(firstKey) {
-                    minVal = +isodict[key];
-                    maxVal = +isodict[key];
-                    firstKey = false;
-                }
-                else {
-                    if (+isodict[key] > maxVal) {
-                      maxVal = isodict[key];
-                    }
-                    if (+isodict[key] < minVal) {
-                      minVal = isodict[key];
-                    }
-                }
-            });
 
             // Loop through every country provided and generate a polygon string object
             countryData.features.forEach( function (feature) {
@@ -576,9 +589,9 @@ d3.select("#selDataset1").on("change", function () {
                 } // if (country data is available)
             }); // forEach country
 
-            WE.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
-                attribution: '© OpenStreetMap contributors'
-            }).addTo(globe1);
+        WE.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(globe1);
 
         }); // event listener for year-change 
 
