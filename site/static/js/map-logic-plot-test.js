@@ -124,15 +124,29 @@ d3.json("../static/data/countries.json").then(  function(data) {
 
   svgMap.append("g")
       .attr("id","colorbar")
-      .attr("transform",`translate(${width * 0.95},${height * 0.6})`)
+      .attr("transform",`translate(${width * 0.935},${height * 0.69})`)
       .call(cb);
 
   svgMap.append("text")
       .attr("text-anchor","middle")
-      .attr("transform",`translate(${width * 0.93},${height * 0.55})`)
+      .attr("transform",`translate(${width * 0.94},${height * 0.6})`)
       .attr("id","colorbar-label")
       .attr("stroke","black")
-      .html("<p>Pearson<p>Correlation<p>Coefficient");
+      .html("Pearson");
+
+      svgMap.append("text")
+      .attr("text-anchor","middle")
+      .attr("transform",`translate(${width * 0.94},${height * 0.63})`)
+      .attr("id","colorbar-label2")
+      .attr("stroke","black")
+      .html("Correlation");
+
+    svgMap.append("text")
+      .attr("text-anchor","middle")
+      .attr("transform",`translate(${width * 0.94},${height * 0.66})`)
+      .attr("id","colorbar-label3")
+      .attr("stroke","black")
+      .html("Coefficient");
   
   // Event handlers to get selections and make back end call
   d3.select("#selDataset1").on("change", function () {
@@ -190,6 +204,7 @@ d3.json("../static/data/countries.json").then(  function(data) {
             mode: 'lines+markers',
             name: `${var1}`,
             line: {shape: 'linear'},
+            type: 'scatter'
             };
 
         let trace2 = {
@@ -198,22 +213,26 @@ d3.json("../static/data/countries.json").then(  function(data) {
             mode: 'lines+markers',
             name: `${var2}`,
             line: {shape: 'linear'},
+            type: 'scatter',
+            yaxis: 'y2'
             };
         let data = [trace1, trace2];
         let layout = {
+            colorway: ['#0B0','#007'],
             title: `Trends in ${var1} and ${var2} in ${countryName}`,
             xaxis: { title: "Year" },
             yaxis: { 
               title: `${var1}`,
-              titlefont: {color: 'rgb(67,67,67)'},
-              tickfont: {color: 'rgb(67,67,67)'}
+              titlefont: {color: 'rgb(0, 191, 0)'},
+              tickfont: {color: 'rgb(0, 191, 0)'}
             },
             yaxis2: {
               title: `${var2}`,
               titlefont: {color: 'rgb(0, 0, 128)'},
               tickfont: {color: 'rgb(0, 0, 128)'},
               overlaying: 'y',
-              side: 'right'
+              side: 'right',
+              showgrid: false
             }
           };
             
