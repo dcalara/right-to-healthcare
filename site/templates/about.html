@@ -43,7 +43,88 @@
           </div>
         </nav>
         <!--Main body on landing page, grid for maps-->
-
+    <div class="container mt-2 mx-auto">
+      <h2>About the Project</h2>
+      <p>A healthy population has long been recognized as an 
+        important preerquisite to national growth and development, 
+        as well as personal well-being.  A solid health care system 
+        is a valuable national asset.  For that reason, universal health 
+        coverage has been declared an important worldwide development goal.</p>
+      <p>How can we communicate the impact of the health care system 
+        on important outcomes?  Can the vast amount of health-care related 
+        data be mined to generate effective tools for advocacy?/<p>
+      <p>We think so, and we built this tool to provide new ways of 
+        visualizing the data that we haven't seen elsewhere.</p>
+      <p>Our visualizations focus on comparisons over time -- 
+        there are lots of comparisons between countries already 
+        available, but visualizations of time-based data, especially involving multiple 
+        variables, are more difficult to come by.</p>
+      <p>Time series data, especially among multiple variables, are 
+          valuable because they relate directly to future outcomes.  Countries 
+          will always be distinctive, so simply knowing that one country's 
+          outcomes are better may not persuasively indicate that improvements in
+          a different country are likely.  On the other hand, if, over time, 
+          improvements in certain health system indicators are strongly correlated with 
+          better outcomes, and particularly, if those correlations are observed commonly 
+          all around the world in many countries, then a more persuasive case for 
+          change can be made!</p>
+      <p>Our correlations tool is therefore designed to give advocates a new 
+        way to visually demonstrate the impact of a strong health care system. 
+        This tool offers tow important visualizations, one that show how "universal" 
+        correlations among dozens of varaibles are, and a second that allows you 
+        to see the change in these indicators in any specific country over time. 
+        <a href="dataviz.html">Explore this tool now!</a></p>
+      <p>We built a third, interactive visualization that lets you take a more 
+        global, long-term view.  We took a standard chloropleth map and put it onto 
+        interactive, spinnable, zoomable globe so that you can truly explore the 
+        world of data.  We also did something a bit unusual with our chloropleth.  
+      Instead of scaling that data within a single year, we built colors that indicate
+      values references to all the years in a dataset.  By changing the year, you can 
+      literally see the world "light up" as things get better over time. 
+      <a href="globe.html">Light up the world for yourself!</a> </p>
+        </p>
+      <h3>About the Data</h3>
+      <p>Much of our data comes from <a href="https://data.worldbank.org/indicator" target="_blank">
+      the World Bank</a>, which has collected a number of useful variables, including:</p>
+      <ul>
+        <li>Health Outcomes</li>
+      <ul>
+        <li>Crude birth rate -- the number of live births per 1,000 midyear population</li>
+        <li>Crude death rate -- the number of deaths per 1,000 midyear population</li>
+        <li>Infant Mortality rate, infant (per 1,000 live births).  Infant mortality rate is the number of infants dying before reaching one year of age, per 1,000 live births in a given year.</li>
+        <li>Life expectancy at birth, total (years) -- Life expectancy at birth indicates the number of years a newborn infant would live if prevailing patterns of mortality at the time of its birth were to stay the same throughout its life.</li>
+        <li>Net migration -	Net migration is the net total of migrants during the period, that is, the total number of immigrants less the annual number of emigrants, including both citizens and noncitizens. Data are five-year estimates.</li>
+        <li>>Fertility rate, total (births per woman) - Total fertility rate represents the number of children that would be born to a woman if she were to live to the end of her childbearing years and bear children in accordance with age-specific fertility rates of the specified year.</li>
+      </ul>
+        <li>Health System Indicators</li>
+        <ul>
+          <li>Current health expenditure (% of GDP) --	Estimates of current health expenditures include healthcare goods and services consumed during each year. 
+          This indicator does not include capital health expenditures such as buildings, machinery, IT and stocks of vaccines for emergency or outbreaks.</li>
+          <li>Current health expenditure per capita, PPP (current international $) expressed in international dollars at purchasing power parity (PPP).
+          Purchasing power parity, a component of some economic theories and is a technique used to determine the relative value of different currencies. 
+          Aggregation Method: Weighted average 
+          <li>Out-of-pocket expenditure per capita (current US$)
+          Health expenditure through out-of-pocket payments per capita in USD. Out of pocket payments are spending on health directly out of pocket by households in each country.</li>
+          <li>Children out of school, primary, female -- Children out of school are the number of primary-school-age children not enrolled in primary or secondary school.</li>
+          <li>Access to electricity (% of population) -- Access to electricity is the percentage of population with access to electricity. Electrification data are collected from industry, national surveys and international sources.</li>
+          <li>Births attended by skilled health staff (% of total) -	Births attended by skilled health staff are the percentage of deliveries attended by personnel trained to give the necessary supervision, care, and advice to women during pregnancy, labor, and the postpartum period; to conduct deliveries on their own; and to care for newborns.</li>
+          <li>Hospital beds (per 1,000 people) -	Hospital beds include inpatient beds available in public, private, general, and specialized hospitals and rehabilitation centers. In most cases beds for both acute and chronic care are included.</li>
+          <li>Fixed broadband subscriptions (per 100 people) -	Fixed broadband subscriptions refers to fixed subscriptions to high-speed access to the public Internet (a TCP/IP connection), at downstream speeds equal to, or greater than, 256 kbit/s. 
+          -	This includes cable modem, DSL, fiber-to-the-home/building, other fixed (wired)-broadband subscriptions, satellite broadband and terrestrial fixed wireless broadband. This total is measured irrespective of the method of payment. 
+          -	It excludes subscriptions that have access to data communications (including the Internet) via mobile-cellular networks. It should include fixed WiMAX and any other fixed wireless technologies. It includes both residential subscriptions and subscriptions for organizations. 
+          Broadband subscriptions are a good proxy for the state of communications systems, which are critical to disseminating health inforamtion.</li>
+          <li>Literacy rate, adult female (% of females ages 15 and above) --	Adult literacy rate is the percentage of people ages 15 and above who can both read and write with understanding a short simple statement about their everyday life.</li>
+          <li>Literacy rate, youth female (% of females ages 15-24) -- Youth literacy rate is the percentage of people ages 15-24 who can both read and write with understanding a short simple statement about their everyday life.</li>
+          </ul>
+        </ul>
+        <p>In addition to these indicators, we also collected indicators of the state of society in general.  These include:</p>
+         <ul>
+           <li>Corruption data from <a href="https://www.transparency.org" target="_blank">transparency.org</a></li>
+          Since its inception in 1995, the Corruption Perceptions Index, Transparency International’s flagship research product, has become the leading global indicator of public sector corruption. The index offers an annual snapshot of the relative degree of corruption by ranking countries and territories from all over the globe. In 2012, Transparency International revised the methodology used to construct the index to allow for comparison of scores from one year to the next. The 2018 CPI draws on 13 surveys and expert assessments to measure public sector corruption in 180 countries and territories, giving each a score from zero (highly corrupt) to 100 (very clean). 
+          To simplify comparisons, years prior to 2012 were multiplied by a factor of ten, which is a technique previously disclosed for generating more comparable data.</li>
+          <li>Economic freedom data from <a href="https://tcdata360.worldbank.org/indicators/idx.econ.free.scr?country=BRA&indicator=747&viz=line_chart&years=2013,2018" target="_blank">the World Bank</a>.</li>
+          </ul>
+    </div>
     <div class="container mt-2 mt-md-5 text-light bg-secondary">
       Last updated 06-22-2019 by UCBX Health Data Team
       <a class="container-link text-warning" href="https://opensource.org/licenses/MIT" target="_blank">

@@ -44,9 +44,26 @@
           </div>
         </nav>
         <!--Main body on landing page, grid for maps-->
-    <div class="container" id="data_1">
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+                Select a variable from the menu.  After a few seconds of loading, the globe will 
+                fill in with data from the first available year.  Then you can select a different 
+                year using the "Year" drop-down.  You can spin and zoom the globe to see more 
+                detail.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+        </div>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                Due to large memory requirements, the page may become unresponsive after viewing several
+                data sets.  If that happens, just refresh the page.  
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+      </div>
+    <div class="d-flex justify-content-center" id="data_1">
       <!-- alt  <select id="selDataset1" onchange="getData(this.value)">-->
       <select id="selDataset1">
+        <option value="" selected disabled hidden>Choose Dataset...</option>
         <option value="electricity">Access to Electricity</option>
         <option value="staffed_birth">Births Attended by Skilled Health Staff</option>
         <option value="birth_rate">Birth Rate</option>
@@ -63,28 +80,37 @@
         <option value="human_rights_score">Human Rights Score</option>
         <option value="infant_mortality_rate">Infant Mortality Rate</option>
         <option value="life_expectancy">Life Expectancy</option>
-        <option value="life_expectancy_male">Life Expectancy (Male)</option>
-        <option value="life_expectancy_female">Life Expectancy (Female)</option>
         <option value="female_literacy_adult">Literacy (Adult Female)</option>
         <option value="female_literacy_youth">Literacy (Youth Female)</option>
         <option value="medical_doctors">Medical Doctors (per 10,000)</option>
         <option value="migration">Net Migration</option>
         <option value="last_grade_female">To Last Grade (Female)</option>
         <option value="last_grade_male">To Last Grade (Male)</option>
+        <option value="out_of_pocket_expense">Out-of-Pocket Health Expenses</option>
     </select>
       
     <select id="selYear">
-      <option value="2000">2000</option>
+        <option value="" selected disabled hidden>Year</option>
     </select>
 
     </div>
+    <div class="container" style="width:750px;">
+    <div class="row">
+    <div class="col-10">
     <div class="globe" id="globe_1"></div>
+    </div>
+    <div class="col-2">
+    <div class="legend-area" id="legend_1"></div>
+    </div>
+    </div>
+  </div>
     <div class="container mt-2 mt-md-5 text-light bg-secondary">
       Last updated 06-22-2019 by UCBX Health Data Team
       <a class="container-link text-warning" href="https://opensource.org/licenses/MIT" target="_blank">
-          MIT Open Source License</a>,??
+          MIT Open Source License</a>
           on <a href="https://github.com/dcalara/right-to-healthcare" target="_blank">Github</a> for details.
     <!-- Local js-->
+    <script type="text/javascript" src="../static/js/colorbar.js"></script>
     <script type="text/javascript" src="../static/js/globe-logic.js"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
