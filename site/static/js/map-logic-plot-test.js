@@ -70,8 +70,10 @@ function getRoutes(dataset) {
     case "last-grade_male":
       return "SE-PRM-PRSL-MA-ZS";
       break;
+    case "out_of_pocket_expense":
+      return "SH-XPD-OOPC-PC-CD"
     default:
-      return "HRP-SCORE";
+      return "HLTH-INS";
       break;
   }
  

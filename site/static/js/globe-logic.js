@@ -350,6 +350,9 @@ function getRoutes(dataset) {
     case "last-grade_male":
       return "SE-PRM-PRSL-MA-ZS";
       break;
+    case "out_of_pocket_expense":
+        return "SH-XPD-OOPC-PC-CD";
+        break;
     default:
       return "HRP-SCORE";
       break;
