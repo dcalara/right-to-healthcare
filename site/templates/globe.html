@@ -44,6 +44,22 @@
           </div>
         </nav>
         <!--Main body on landing page, grid for maps-->
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+                Select a variable from the menu.  After a few seconds of loading, the globe will 
+                fill in with data from the first available year.  Then you can select a different 
+                year using the "Year" drop-down.  You can spin and zoom the globe to see more 
+                detail.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+        </div>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                Due to large memory requirements, the page may become unresponsive after viewing several
+                data sets.  If that happens, just refresh the page.  
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+      </div>
     <div class="d-flex justify-content-center" id="data_1">
       <!-- alt  <select id="selDataset1" onchange="getData(this.value)">-->
       <select id="selDataset1">

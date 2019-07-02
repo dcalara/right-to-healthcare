@@ -46,12 +46,22 @@
           </div>
         </nav>
         <!--Main body on landing page, grid for maps-->
+      <div class="alert alert-info alert-dismissible fade show" role="alert">
+              Select two variables from the menus below to generate a map of their correlation coefficients. 
+              A coefficient of +1 indicates a strong positive corelation (yellow), -1 (purple) indicates a strong 
+              negative correlation, while zero (blue-green) indicates no correlation.  Then click on any 
+              country to see a graph of the two variables for that country.
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+      </div>
     <div class="container-fluid">
       <div class="h-65" id="map">
         <!-- script will fill in map here-->
       </div>
     <select id="selDataset1">
-        <option selected value="electricity">Access to Electricity</option>
+        <option value="" selected disabled hidden>Choose Dataset...</option>
+        <option  value="electricity">Access to Electricity</option>
         <option value="staffed_birth">Births Attended by Skilled Health Staff</option>
         <option value="birth_rate">Birth Rate</option>
         <option value="broadband">Broadband Subscriptions</option>
@@ -67,9 +77,7 @@
         <option value="human_rights_score">Human Rights Score</option>
         <option value="infant_mortality_rate">Infant Mortality Rate</option>
         <option value="life_expectancy">Life Expectancy</option>
-        <option value="life_expectancy_male">Life Expectancy (Male)</option>
-        <option value="life_expectancy_female">Life Expectancy (Female)</option>
-        <option value="female_literacy_adult">Literacy (Adult Female)</option>
+       <option value="female_literacy_adult">Literacy (Adult Female)</option>
         <option value="female_literacy_youth">Literacy (Youth Female)</option>
         <option value="medical_doctors">Medical Doctors (per 10,000)</option>
         <option value="migration">Net Migration</option>
@@ -78,7 +86,8 @@
     </select>
       
     <select id="selDataset2">
-      <option selected value="electricity">Access to Electricity</option>
+      <option value="" selected disabled hidden>Choose Dataset...</option>
+      <option  value="electricity">Access to Electricity</option>
       <option value="staffed_birth">Births Attended by Skilled Health Staff</option>
       <option value="birth_rate">Birth Rate</option>
       <option value="broadband">Broadband Subscriptions</option>
@@ -94,8 +103,6 @@
       <option value="human_rights_score">Human Rights Score</option>
       <option value="infant_mortality_rate">Infant Mortality Rate</option>
       <option value="life_expectancy">Life Expectancy</option>
-      <option value="life_expectancy_male">Life Expectancy (Male)</option>
-      <option value="life_expectancy_female">Life Expectancy (Female)</option>
       <option value="female_literacy_adult">Literacy (Adult Female)</option>
       <option value="female_literacy_youth">Literacy (Youth Female)</option>
       <option value="medical_doctors">Medical Doctors (per 10,000)</option>

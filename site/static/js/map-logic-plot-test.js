@@ -184,6 +184,29 @@ d3.json("../static/data/countries.json").then(  function(data) {
     });
   });
 
+  const dataToolTip = d3.tip()
+      .attr("class", "tooltip")
+      .offset([-5, 0])
+      .style("background-color","lightyellow")
+      .style("border","1px solid black")
+      .style("padding","2px")
+      .style("border-radius","5px")
+      .html(d => `${d.properties.name}`);
+
+  //Create the tooltip in map.
+  d3.selectAll(".countries")
+      .selectAll("path")
+      .call(dataToolTip);
+
+  // Event listeners
+  d3.selectAll(".countries")
+      .selectAll("path").on("mouseover", function(d) {
+      dataToolTip.show(d, this);
+  })
+  .on("mouseout", function(d) {
+      dataToolTip.hide(d);
+  });
+
   d3.selectAll(".countries")
         .selectAll("path")
         .on("click", function (d, i) {
